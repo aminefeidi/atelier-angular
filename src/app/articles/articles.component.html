@@ -1,0 +1,30 @@
+<h2>TODO Exercice 2:</h2>
+<mat-card style="max-width: 400px; margin: 10px;">
+  <mat-list>
+    <mat-form-field style="margin: 0 auto;width: 100%" appearance="outline">
+      <input matInput type="number" min="0" [(ngModel)]="count" (ngModelChange)="filter()">
+    </mat-form-field>
+    <mat-divider></mat-divider>
+    <ng-container *ngFor="let article of filteredArticles">
+      <ng-container *ngIf="article.categorie != 'Travail'">
+        <mat-list-item lines="4" [style.background-color]="article.categorie == 'Education' ? 'lightblue':'white'">
+          <span matListItemTitle>Titre: {{article.titre}}</span>
+          <span matListItemLine>Date: {{article.date}}</span>
+          Contenu: {{article.contenu}}
+        </mat-list-item>
+      </ng-container>
+    </ng-container>
+
+    <ng-container *ngIf="filteredArticles.length == 0">
+      <mat-list-item>
+        <div class="item-cont">
+          <div matListItemTitle>Aucun résultat</div>
+        </div>
+      </mat-list-item>
+    </ng-container>
+
+    <mat-divider></mat-divider>
+
+
+  </mat-list>
+</mat-card>

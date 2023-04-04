@@ -1,0 +1,43 @@
+<h2>TODO Exercice 1:</h2>
+<mat-card style="max-width: 400px; margin: 10px;">
+  <mat-list>
+    <mat-form-field style="margin: 0 auto;width: 100%" appearance="outline">
+      <input matInput placeholder="Rechercher" [(ngModel)]="searchText" (ngModelChange)="search()">
+    </mat-form-field>
+    <mat-divider></mat-divider>
+    <ng-container *ngIf="listeEmplois.length > 0">
+      <mat-list-item *ngFor="let emp of listeEmplois">
+        <div class="item-cont">
+          <mat-icon style="margin-right: 10px" matListItemIcon>work</mat-icon>
+          <div>
+            <div matListItemTitle>{{emp.titre}}</div>
+            <div matListItemLine>{{emp.entreprise}}</div>
+          </div>
+          <div style="flex: 1"></div>
+          <button mat-raised-button color="accent" (click)="null" [disabled]="!emp.etat">Postuler</button>
+        </div>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+
+      <mat-list-item>
+        <div class="item-cont">
+          <div matListItemTitle>Nombre de résultats: {{listeEmplois.length}}</div>
+        </div>
+      </mat-list-item>
+      <mat-list-item>
+        <div class="item-cont">
+          <div matListItemTitle>Offres non clôturées.: {{availableEmplois}}</div>
+        </div>
+      </mat-list-item>
+    </ng-container>
+
+    <ng-container *ngIf="listeEmplois.length == 0">
+      <mat-list-item>
+        <div class="item-cont">
+          <div matListItemTitle>Aucun résultat</div>
+        </div>
+      </mat-list-item>
+    </ng-container>
+
+  </mat-list>
+</mat-card>
