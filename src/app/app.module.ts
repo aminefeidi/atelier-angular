@@ -13,12 +13,14 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatInputModule} from "@angular/material/input";
 import {FormsModule} from "@angular/forms";
 import { ArticlesComponent } from './articles/articles.component';
+import { TemplateDrivenExampleComponent } from './template-driven-example/template-driven-example.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     OffresEmploiComponent,
-    ArticlesComponent
+    ArticlesComponent,
+    TemplateDrivenExampleComponent
   ],
   imports: [
     BrowserModule,

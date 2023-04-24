@@ -1,0 +1,49 @@
+<mat-card>
+  <form #myForm="ngForm">
+    <mat-card-title>Informations générales</mat-card-title>
+    <mat-card-content>
+      <mat-form-field>
+        <input matInput placeholder="Nom" name="name" required [(ngModel)]="name">
+        <mat-error *ngIf="myForm.controls['name']?.invalid && (myForm.controls['name']?.dirty || myForm.controls['name']?.touched)">
+          Le nom est obligatoire.
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Email" name="email" required email [(ngModel)]="email">
+        <mat-error *ngIf="myForm.controls['email']?.invalid && (myForm.controls['email']?.dirty || myForm.controls['email']?.touched)">
+          L'email est obligatoire et doit avoir le format suivant: xxxxx.yyyyy@zzzzz (le premier point existe, l'@ existe et il faut avoir 3 caractères après l'@)
+        </mat-error>
+      </mat-form-field>
+    </mat-card-content>
+    <mat-card>
+      <mat-card-title>Informations de payement</mat-card-title>
+      <mat-card-content>
+        <mat-form-field>
+          <input matInput placeholder="Type de la carte" name="cardType" required [(ngModel)]="cardType">
+          <mat-error *ngIf="myForm.controls['cardType']?.invalid && (myForm.controls['cardType']?.dirty || myForm.controls['cardType']?.touched)">
+            Le type de carte est obligatoire.
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Numéro de carte" name="cardNumber" required pattern="[0-9]{16}" [(ngModel)]="cardNumber">
+          <mat-error *ngIf="myForm.controls['cardNumber']?.invalid && (myForm.controls['cardNumber']?.dirty || myForm.controls['cardNumber']?.touched)">
+            Le numéro de carte est obligatoire et doit contenir 16 chiffres.
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Date d'expiration" name="expirationDate" required [(ngModel)]="expirationDate">
+          <mat-error *ngIf="myForm.controls['expirationDate']?.invalid && (myForm.controls['expirationDate']?.dirty || myForm.controls['expirationDate']?.touched)">
+            La date d'expiration est obligatoire.
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field *ngIf="myForm.controls['expirationDate']?.valid && myForm.controls['cardNumber']?.valid && myForm.controls['cardType']?.valid">
+          <input matInput placeholder="Code" name="code" [(ngModel)]="code">
+          <mat-error *ngIf="myForm.controls['code']?.invalid && (myForm.controls['code']?.dirty || myForm.controls['code']?.touched)">
+            Le code est obligatoire.
+          </mat-error>
+        </mat-form-field>
+      </mat-card-content>
+    </mat-card>
+    <button mat-raised-button color="primary" [disabled]="myForm.invalid">Ajouter</button>
+  </form>
+</mat-card>
